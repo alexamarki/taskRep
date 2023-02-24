@@ -8,7 +8,7 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode(size_screen)
     pygame.display.set_caption('Свой курсор мыши')
     screen.fill((0, 0, 0))
-    cursor = pygame.image.load('arrow/data/arrow.png').convert_alpha()
+    cursor = pygame.image.load('data/arrow.png').convert_alpha()
     cursor_rect = cursor.get_rect()
     pygame.mouse.set_visible(False)
     running = True
