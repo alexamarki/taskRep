@@ -16,7 +16,6 @@ class Car(pygame.sprite.Sprite):
         self.movement = 1
 
     def update(self):
-        print(self.movement)
         self.rect = self.rect.move(self.movement, 0)
         if ((self.rect.collidepoint((599, 94)) and self.movement == 1) or (
                 self.rect.collidepoint((0, 0)) and self.movement == -1)):
