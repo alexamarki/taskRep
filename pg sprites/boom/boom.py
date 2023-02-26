@@ -15,8 +15,8 @@ class Bomb(pygame.sprite.Sprite):
         self.image = pygame.image.load(Bomb.bomb_loc)
         self.boom_image = pygame.image.load(Bomb.boom_loc)
         self.rect = self.image.get_rect()
-        self.rect.x = random.randrange(w-100)
-        self.rect.y = random.randrange(h-100)
+        self.rect.x = random.randrange(w-50)
+        self.rect.y = random.randrange(h-51)
 
     def update(self, *args):
         if args and args[0].type == pygame.MOUSEBUTTONDOWN and \
