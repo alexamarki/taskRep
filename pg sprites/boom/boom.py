@@ -12,12 +12,8 @@ class Bomb(pygame.sprite.Sprite):
 
     def __init__(self):
         super().__init__(bombs)
-        self.bomb_image = pygame.image.load(Bomb.bomb_loc)
+        self.image = pygame.image.load(Bomb.bomb_loc)
         self.boom_image = pygame.image.load(Bomb.boom_loc)
-        self.image = pygame.transform.scale(self.bomb_image,
-                                                 (100, 100))
-        self.boom_image = pygame.transform.scale(self.boom_image,
-                                                 (100, 100))
         self.rect = self.image.get_rect()
         self.rect.x = random.randrange(w-100)
         self.rect.y = random.randrange(h-100)
@@ -25,7 +21,10 @@ class Bomb(pygame.sprite.Sprite):
     def update(self, *args):
         if args and args[0].type == pygame.MOUSEBUTTONDOWN and \
                 self.rect.collidepoint(args[0].pos):
+            center = self.rect.center
             self.image = self.boom_image
+            self.rect = self.image.get_rect()
+            self.rect.center = center
 
 if __name__ == '__main__':
     pygame.init()
