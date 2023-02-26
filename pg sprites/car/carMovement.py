@@ -13,12 +13,13 @@ class Car(pygame.sprite.Sprite):
         self.image = pygame.image.load(Car.img_loc)
         self.rect = self.image.get_rect()
         self.rect.topleft = (0, 0)
-        self.movement = 1
+        self.movement = 300
 
-    def update(self):
-        self.rect = self.rect.move(self.movement, 0)
-        if ((self.rect.collidepoint((599, 94)) and self.movement == 1) or (
-                self.rect.collidepoint((0, 0)) and self.movement == -1)):
+    def update(self, tick):
+        self.rect.x += self.movement * tick / 1000
+        if ((self.rect.collidepoint((599, 94)) and self.movement == 300)
+            or (self.rect.collidepoint((0, 0))
+                and self.movement == -300)):
             self.movement = -self.movement
             self.image = pygame.transform.flip(self.image, True, False)
 
@@ -30,6 +31,7 @@ if __name__ == '__main__':
     screen.fill((255, 255, 255))
     pygame.display.set_caption('Машинка')
     car = Car()
+    clock = pygame.time.Clock()
     running = True
     while running:
         screen.fill((255, 255, 255))
@@ -37,6 +39,7 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 running = False
         cars.draw(screen)
-        cars.update()
+        tick = clock.tick()
+        cars.update(tick)
         pygame.display.flip()
     pygame.quit()
