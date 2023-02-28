@@ -39,7 +39,7 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 running = False
         cars.draw(screen)
-        tick = clock.tick()
+        tick = clock.tick(60)
         cars.update(tick)
         pygame.display.flip()
     pygame.quit()
