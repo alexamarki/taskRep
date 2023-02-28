@@ -8,7 +8,7 @@ class Board:
     def __init__(self, n, bound):
         self.width = n
         self.height = n
-        self.board = [[0] * width for _ in range(height)]
+        self.board = [[0] * (self.width + 1) for _ in range(self.height + 1)]
         self.left = bound
         self.top = bound
         self.cell_size = (w - bound * 2) / n
@@ -85,7 +85,7 @@ if __name__ == '__main__':
     running = True
     started = False
     clock = pygame.time.Clock()
-    delay = 0
+    delay = 5
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

@@ -94,7 +94,7 @@ if __name__ == '__main__':
     running = True
     started = False
     clock = pygame.time.Clock()
-    delay = 0
+    delay = 5
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
