@@ -107,7 +107,7 @@ if __name__ == '__main__':
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 started = not started
             elif event.type == pygame.MOUSEWHEEL:
-                if delay - event.y >= 0 and delay - event.y <= 10:
+                if 0 <= delay - event.y <= 10:
                     delay -= event.y
         if started:
             clock.tick(delay)
