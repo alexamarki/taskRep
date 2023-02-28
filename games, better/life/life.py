@@ -8,7 +8,7 @@ class Board:
     def __init__(self, n, bound):
         self.width = n
         self.height = n
-        self.board = [[0] * self.width for _ in range(self.height)]
+        self.board = [[0] * width for _ in range(height)]
         self.left = bound
         self.top = bound
         self.cell_size = (w - bound * 2) / n
@@ -98,7 +98,7 @@ if __name__ == '__main__':
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 started = not started
             elif event.type == pygame.MOUSEWHEEL:
-                if delay - event.y >= 0 and delay - event.y <= 10:
+                if 0 <= delay - event.y <= 10:
                     delay -= event.y
         if started:
             clock.tick(delay)
