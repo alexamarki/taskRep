@@ -10,6 +10,7 @@ def not_in(item, array):
             return (False, (array[i].index(item), i))
     return [True]
 
+
 def wave(lab, x, y, cur, n, m):
     lab[x][y] = cur
     if y + 1 < m:
@@ -24,6 +25,7 @@ def wave(lab, x, y, cur, n, m):
     if y - 1 >= 0:
         if lab[x][y - 1] == 0 or (lab[x][y - 1] != -1 and lab[x][y - 1] > cur):
             wave(lab, x, y - 1, cur + 1, n, m)
+    # print(lab)
     return lab
 
 
@@ -76,19 +78,23 @@ class Lines(Board):
 
     def on_click(self, cell):
         not_in_data = not_in(2, self.board)
-        if (((not self.board[cell[1]][cell[0]]) or
-                self.board[cell[1]][cell[0]] == 2)
-                and not_in_data[0]):
+        if ((not self.board[cell[1]][cell[0]] and not_in_data[0]) or
+                (self.board[cell[1]][cell[0]] == 2 and not not_in_data)):
             self.board[cell[1]][cell[0]] = 1
+            # print(*self.board, sep='\n')
         elif (self.board[cell[1]][cell[0]] == 1
               and not_in_data[0]):
             self.board[cell[1]][cell[0]] = 2
+        elif (self.board[cell[1]][cell[0]] == 2):
+            self.board[cell[1]][cell[0]] = 1
         elif (not self.board[cell[1]][cell[0]]
               and not not_in_data[0]):
             cell2 = not_in_data[1]
             if self.has_path(*cell, *cell2):
                 self.board[cell2[1]][cell2[0]] = 0
                 self.board[cell[1]][cell[0]] = 1
+            else:
+                print("nah man")
 
     def render(self, screen):
         color_way = [(255, 0, 0), (0, 0, 255)]
@@ -110,14 +116,13 @@ class Lines(Board):
             for j in range(self.width):
                 if lab[i][j] == 1:
                     lab[i][j] = -1
-        lab = wave(lab, y1, x1, 1, self.height, self.width)
+        lab[x2][y2] = 0
+        # print(lab)
+        lab = wave(lab, x1, y1, 1, self.height, self.width)
         if lab[x2][y2] > 0:
             return True
         else:
             return False
-
-
-
 
 
 if __name__ == '__main__':
@@ -126,7 +131,7 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode(size_screen)
     pygame.display.set_caption('Линеечки')
     screen.fill((0, 0, 0))
-    board = Lines(10, 15)
+    board = Lines(9, 10)
     running = True
     while running:
         for event in pygame.event.get():
