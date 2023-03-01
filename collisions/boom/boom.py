@@ -39,13 +39,11 @@ if __name__ == '__main__':
     size_screen = width, height = w, h
     screen = pygame.display.set_mode(size_screen)
     pygame.display.set_caption('Boom them all-2')
-    for i in range(12):
+    for i in range(10):
         Bomb()
-        print('oi')
     running = True
     while running:
         screen.fill((0, 0, 0))
-        print('hey')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
