@@ -107,6 +107,7 @@ def load_level(filename):
     else:
         raise NoFileError('Error: No file with the name' +
               f' {filename[5:]} found in the data directory')
+        #также можно вывести через print ошибку и затем exit(), но здесь требовалось сообщение об ошибке
 
 
 def generate_level(level):
