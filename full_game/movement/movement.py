@@ -76,7 +76,9 @@ class Player(pygame.sprite.Sprite):
             tile_width * pos_x + 15, tile_height * pos_y + 5)
 
     def update(self, level, mover):
-        if level[self.y + mover[1]][self.x + mover[0]] != '#':
+        if (-1 < self.y + mover[1] < len(level) and
+                -1 < self.x + mover[0] < len(level[self.y + mover[1]])
+                and level[self.y + mover[1]][self.x + mover[0]] != '#'):
             self.rect.x += mover[0] * tile_width
             self.rect.y += mover[1] * tile_height
             self.x += mover[0]
