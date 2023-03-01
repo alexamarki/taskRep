@@ -83,7 +83,6 @@ class Player(pygame.sprite.Sprite):
             self.y += mover[1]
 
 
-
 def load_level(filename):
     filename = "data/" + filename
     with open(filename, 'r') as mapFile:
