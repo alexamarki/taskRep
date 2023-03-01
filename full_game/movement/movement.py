@@ -106,7 +106,6 @@ def generate_level(level):
 
 
 player, level_x, level_y, level = generate_level(load_level('map.txt'))
-print(level)
 pygame.init()
 start_screen()
 running = True
